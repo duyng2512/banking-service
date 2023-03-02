@@ -1,4 +1,4 @@
-package vn.zalopay.rms.teststudioservice.repository;
+package com.dng.bank.app.repository.core;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;

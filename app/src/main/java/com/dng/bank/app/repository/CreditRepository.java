@@ -1,4 +1,7 @@
 package com.dng.bank.app.repository;
 
-public interface CreditRepository<, ID> extends org.springframework.data.jpa.repository.JpaRepository<com.dng.bank.app.entity.Credit, ID> {
+import com.dng.bank.app.entity.Credit;
+import com.dng.bank.app.repository.core.BaseLongPrimaryKeyRepository;
+
+public interface CreditRepository extends BaseLongPrimaryKeyRepository<Credit> {
 }

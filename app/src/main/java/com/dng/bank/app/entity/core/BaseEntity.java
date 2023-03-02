@@ -1,4 +1,4 @@
-package com.dng.bank.app.entity;
+package com.dng.bank.app.entity.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;

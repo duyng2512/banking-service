@@ -1,4 +1,4 @@
-package com.dng.bank.app.entity;
+package com.dng.bank.app.entity.core;
 
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
