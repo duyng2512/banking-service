@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -39,7 +40,7 @@ public class PaymentService extends BaseService<Payment, PaymentDto> {
 	}
 	
 	@Transactional
-	public Response doPaymentForLoan(Long loanId, PaymentDto dto) {
+	public Response makePaymentForLoan(Long loanId, PaymentDto dto) {
 		
 		Payment payment = modelMapper.map(dto, Payment.class);
 		Optional<Loan> optional = loanRepository.findById(loanId);
@@ -49,6 +50,8 @@ public class PaymentService extends BaseService<Payment, PaymentDto> {
 			Payment newPayment = repository.save(payment);
 			Loan loan = optional.get();
 			loan.setAmount(loan.getAmount().subtract(dto.getAmount()));
+			loan.setPaid(loan.getAmount().equals(BigDecimal.ZERO));
+			
 			loanRepository.save(loan);
 			
 			return Response.builder()

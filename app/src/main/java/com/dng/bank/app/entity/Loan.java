@@ -1,5 +1,6 @@
 package com.dng.bank.app.entity;
 
+import com.dng.bank.app.constant.CreditType;
 import com.dng.bank.app.entity.core.BaseLongPrimaryKeyEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,10 +16,6 @@ import java.util.Date;
 @Entity
 @Table(name = "loan")
 public class Loan extends BaseLongPrimaryKeyEntity {
-	
-	@ManyToOne
-	@JoinColumn(name = "credit_id")
-	private Credit credit;
 	
 	@ManyToOne
 	@JoinColumn(name = "applicant_id")
@@ -43,5 +40,9 @@ public class Loan extends BaseLongPrimaryKeyEntity {
 	
 	@Column(name = "paid", columnDefinition = "boolean default false")
 	private Boolean paid;
+	
+	@Column(name = "credit_type")
+	@Enumerated(EnumType.STRING)
+	private CreditType creditType;
 	
 }

@@ -24,7 +24,7 @@ public class PaymentController extends BaseEntityController<Payment, PaymentDto>
 	
 	@PostMapping("do-payment/{id}")
 	public ResponseEntity<Object> paymentForApplication(@PathVariable("id") String loadId, @RequestBody PaymentDto dto) {
-		Response response = ((PaymentService) this.baseEntityService).doPaymentForLoan(Long.valueOf(loadId), dto);
+		Response response = ((PaymentService) this.baseEntityService).makePaymentForLoan(Long.valueOf(loadId), dto);
 		return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
 	}
 }
