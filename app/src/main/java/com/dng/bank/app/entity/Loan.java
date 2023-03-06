@@ -1,11 +1,10 @@
 package com.dng.bank.app.entity;
 
 import com.dng.bank.app.constant.CreditType;
+import com.dng.bank.app.constant.PaymentPeriod;
 import com.dng.bank.app.entity.core.BaseLongPrimaryKeyEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -15,11 +14,17 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "loan")
+@Builder
+@AllArgsConstructor
 public class Loan extends BaseLongPrimaryKeyEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "applicant_id")
 	private Applicant applicant;
+	
+	@ManyToOne
+	@JoinColumn(name = "credit_id")
+	private Credit credit;
 	
 	@Column(name = "amount")
 	private BigDecimal amount;
@@ -38,11 +43,15 @@ public class Loan extends BaseLongPrimaryKeyEntity {
 	@Column(name = "interest")
 	private BigDecimal interest;
 	
-	@Column(name = "paid", columnDefinition = "boolean default false")
-	private Boolean paid;
+	@Column(name = "overdue", columnDefinition = "boolean default false")
+	private boolean overdue;
 	
 	@Column(name = "credit_type")
 	@Enumerated(EnumType.STRING)
 	private CreditType creditType;
+	
+	@Column(name = "payment_period")
+	@Enumerated(EnumType.STRING)
+	private PaymentPeriod paymentPeriod;
 	
 }

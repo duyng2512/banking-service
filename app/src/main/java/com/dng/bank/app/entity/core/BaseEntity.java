@@ -19,10 +19,10 @@ public abstract class BaseEntity<T extends Serializable> implements Serializable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected T id;
 	
-	@Column(nullable = false, columnDefinition = "default EXTRACT(EPOCH from CURRENT_TIMESTAMP())")
+	@Column(nullable = false)
 	protected Long createAt;
 	
-	@Column(nullable = false, columnDefinition = "default EXTRACT(EPOCH from CURRENT_TIMESTAMP())")
+	@Column(nullable = false)
 	protected Long updateAt;
 	
 	@PrePersist

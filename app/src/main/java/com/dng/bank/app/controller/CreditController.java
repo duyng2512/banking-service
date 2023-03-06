@@ -9,10 +9,7 @@ import com.dng.bank.app.service.core.BaseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/credit/*")
@@ -22,10 +19,15 @@ public class CreditController extends BaseEntityController<Credit, CreditDto> {
 		super(baseEntityService);
 	}
 	
-	@PostMapping("create/{id}")
-	public ResponseEntity<Object> newCreditForApplication(@PathVariable("id") String applicationId, @RequestBody CreditDto creditDto) {
-		Response response = ((CreditService) this.baseEntityService).newCreditForApplicant(Long.valueOf(applicationId), creditDto);
-		;
+	@PostMapping("create/{applicantId}")
+	public ResponseEntity<Object> newCreditForApplication(@PathVariable("applicantId") String applicationId, @RequestBody CreditDto creditDto) {
+		Response response = ((CreditService) this.baseEntityService).setCreditForApplicant(Long.valueOf(applicationId), creditDto);
+		return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("get/{applicantId}")
+	public ResponseEntity<Object> getCreditForApplication(@PathVariable("applicantId") String applicationId) {
+		Response response = ((CreditService) this.baseEntityService).getCreditForApplicant(Long.valueOf(applicationId));
 		return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
 	}
 }

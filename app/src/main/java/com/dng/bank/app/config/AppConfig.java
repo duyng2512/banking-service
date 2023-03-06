@@ -15,7 +15,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class AppConfig {
 	@Bean
 	public ModelMapper modelMapper() {
-		return new ModelMapper();
+		ModelMapper modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setSkipNullEnabled(true);
+		return modelMapper;
 	}
 	
 	@Bean

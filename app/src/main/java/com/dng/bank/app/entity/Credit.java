@@ -3,9 +3,7 @@ package com.dng.bank.app.entity;
 import com.dng.bank.app.constant.CreditType;
 import com.dng.bank.app.entity.core.BaseLongPrimaryKeyEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.NaturalId;
 
 import java.math.BigDecimal;
@@ -16,6 +14,8 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "credit")
+@Builder
+@AllArgsConstructor
 public class Credit extends BaseLongPrimaryKeyEntity {
 	
 	@ManyToOne
@@ -44,4 +44,7 @@ public class Credit extends BaseLongPrimaryKeyEntity {
 	@Column(name = "credit_type")
 	@Enumerated(EnumType.STRING)
 	private CreditType creditType;
+	
+	@Column(name = "valid", columnDefinition = "boolean default true")
+	private boolean valid;
 }

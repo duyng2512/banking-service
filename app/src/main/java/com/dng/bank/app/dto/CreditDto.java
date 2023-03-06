@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.apache.commons.lang3.time.DateUtils;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -18,13 +19,11 @@ import java.util.Date;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class CreditDto implements Serializable {
-	private Long createAt;
-	private Long updateAt;
-	private ApplicantDto applicant;
 	private BigDecimal totalLimit;
 	private String currency;
 	private String creditRegNumber;
-	private Date startDate;
-	private Date endDate;
+	private Date startDate = new Date();
+	private Date endDate = DateUtils.addDays(new Date(), 365);
 	private CreditType creditType;
+	private boolean valid;
 }

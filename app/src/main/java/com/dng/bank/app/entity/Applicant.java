@@ -4,9 +4,7 @@ import com.dng.bank.app.entity.core.BaseLongPrimaryKeyEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.NaturalId;
 
 @Getter
@@ -14,6 +12,8 @@ import org.hibernate.annotations.NaturalId;
 @NoArgsConstructor
 @Entity
 @Table(name = "applicant")
+@Builder
+@AllArgsConstructor
 public class Applicant extends BaseLongPrimaryKeyEntity {
 	
 	@Column(name = "name")
