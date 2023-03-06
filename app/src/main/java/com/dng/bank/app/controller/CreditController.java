@@ -22,7 +22,7 @@ public class CreditController extends BaseEntityController<Credit, CreditDto> {
 		super(baseEntityService);
 	}
 	
-	@PostMapping("new/{id}")
+	@PostMapping("create/{id}")
 	public ResponseEntity<Object> newCreditForApplication(@PathVariable("id") String applicationId, @RequestBody CreditDto creditDto) {
 		Response response = ((CreditService) this.baseEntityService).newCreditForApplicant(Long.valueOf(applicationId), creditDto);
 		;

@@ -22,7 +22,7 @@ public class LoanController extends BaseEntityController<Loan, LoanDto> {
 		super(baseEntityService);
 	}
 	
-	@PostMapping("new/{id}")
+	@PostMapping("create/{id}")
 	public ResponseEntity<Object> newLoanForApplication(@PathVariable("id") String applicationId, @RequestBody LoanDto loanDto) {
 		Response response = ((LoanService) this.baseEntityService).newLoanForApplicant(Long.valueOf(applicationId), loanDto);
 		return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
