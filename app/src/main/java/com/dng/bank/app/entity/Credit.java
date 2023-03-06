@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.NaturalId;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -26,6 +27,10 @@ public class Credit extends BaseLongPrimaryKeyEntity {
 	
 	@Column
 	private String currency;
+	
+	@Column(name = "reg_number")
+	@NaturalId
+	private String creditRegNumber;
 	
 	@Column(name = "start_date")
 	@Temporal(TemporalType.DATE)

@@ -23,6 +23,7 @@ public class CreditDto implements Serializable {
 	private ApplicantDto applicant;
 	private BigDecimal totalLimit;
 	private String currency;
+	private String creditRegNumber;
 	private Date startDate;
 	private Date endDate;
 	private CreditType creditType;

@@ -19,6 +19,11 @@ public abstract class BaseService<T extends BaseLongPrimaryKeyEntity, DTO> {
 	@Autowired
 	protected ModelMapper modelMapper;
 	
+	public BaseService(BaseRepository<T, Long> repository, ModelMapper modelMapper) {
+		this.repository = repository;
+		this.modelMapper = modelMapper;
+	}
+	
 	public abstract Class<DTO> getDtoType();
 	
 	public abstract Class<T> getEntityType();
@@ -33,10 +38,22 @@ public abstract class BaseService<T extends BaseLongPrimaryKeyEntity, DTO> {
 			       .collect(Collectors.toList());
 	}
 	
+	public boolean exist(Long id) {
+		return repository.existsById(id);
+	}
+	
 	public DTO findById(Long id) {
 		Optional<T> data = repository.findById(id);
 		if (data.isPresent()) {
 			return modelMapper.map(data.get(), getDtoType());
+		}
+		throw new EntityNotFoundException(getEntityName() + " not found with id: " + id);
+	}
+	
+	public T findByEntityId(Long id) {
+		Optional<T> data = repository.findById(id);
+		if (data.isPresent()) {
+			return data.get();
 		}
 		throw new EntityNotFoundException(getEntityName() + " not found with id: " + id);
 	}

@@ -17,7 +17,11 @@ import java.util.Date;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class PaymentDto implements Serializable {
+	private String loadId;
+	private Date paymentDate;
 	private PaymentIdDto paymentId;
 	private Date dueDate;
 	private BigDecimal amount;
+	private Long createAt;
+	private Long updateAt;
 }
